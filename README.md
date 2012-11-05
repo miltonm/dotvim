@@ -4,6 +4,6 @@ Dotvim by following the instructions from the
 Installation:
     git clone git://github.com/miltonm/dotvim.git ~/.git
 
-Create symlinks:
+Create symlinks:   
     ln -s ~/dotvim/vimrc ~/.vimrc   
     ln -s ~/dotvim/gvimrc ~/.gvimrc
