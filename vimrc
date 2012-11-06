@@ -274,3 +274,10 @@ function! MakePattern(text)
 endfunction
 vnoremap <silent> <F8> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
+"Using solarized colorscheme
+set background=dark
+colorscheme solarized
+
+"use system clipboard --- at last
+set clipboard=unnamedplus
