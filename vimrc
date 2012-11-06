@@ -144,6 +144,7 @@ inoremap JK <Esc>
 nnoremap <silent> <F12> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$']
 let NERDTreeWinSize=40
+let g:NERDTreeDirArrows=0
 
 
 "From http://items.sjbach.com/319/configuring-vim-right
@@ -281,3 +282,4 @@ colorscheme solarized
 
 "use system clipboard --- at last
 set clipboard=unnamedplus
+
