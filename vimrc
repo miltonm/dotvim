@@ -128,7 +128,7 @@ autocmd BufRead *.py set makeprg=python\ -c\ \"import\ py_compile,sys;\ sys.stde
 autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^\ ]%\\@=%m
 
 "taglist things
-nnoremap <silent> <F10> :TlistToggle<CR>
+nnoremap <silent> <F10> :TagbarToggle<CR>
 let Tlist_Process_File_Always=1
 
 "create tab with f10
