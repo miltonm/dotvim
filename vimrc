@@ -115,6 +115,12 @@ imap <C-k> <Esc>:wincmd k <CR>
 map  <C-l> <Esc>:wincmd l <CR>
 imap <C-l> <Esc>:wincmd l <CR>
 
+" resize current buffer by +/- 5 
+nnoremap <leader>h :vertical resize -5<cr>
+nnoremap <leader>l :vertical resize +5<cr>
+nnoremap <leader>j :resize -5<cr>
+nnoremap <leader>k :resize +5<cr>
+
 "source /home/milton/cscope_maps.vim
 
 
@@ -190,7 +196,7 @@ nnoremap <leader><space> :noh<cr>
 "format xml
 map <leader>b :%s#><\([^/]\)#>\r<\1#g<cr>
 "format json
-map <leader>j :%!python -m json.tool<cr>
+map <leader>s :%!python -m json.tool<cr>
 
 set wrap
 set textwidth=79
@@ -230,13 +236,7 @@ function! ToggleMouse()
     endif
 endfunction
 
-"http://vim.wikia.com/wiki/Capitalize_words_in_insert_and_normal_modes_without_moving_the_cursor
-"uppercase
-nnoremap <leader>u mzgUiw`z<cr>
-"lowercase
-nnoremap <leader>l mzguiW`z<cr>
-"toggle case
-nnoremap <leader>t mzg~iW`z<cr>
+
 set guioptions-=T
 
 set noerrorbells
