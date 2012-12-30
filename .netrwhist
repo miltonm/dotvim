@@ -1,4 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/home/mm/virtualenvs/revs/lib/python2.7/site-packages/Django-1.6.dev20121121091900-py2.7.egg-info'
-let g:netrw_dirhist_2='/home/mm/.gsharkdown/covers'
