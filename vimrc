@@ -277,8 +277,12 @@ vnoremap <silent> <F8> :<C-U>let @/="<C-R>=MakePattern(@*)<CR>"<CR>:set hls<CR>
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 "Using solarized colorscheme
+" When without gui solarized works properly when t_Co set to 16
 set background=dark
 colorscheme solarized
+if !has("gui_running")
+    set t_Co=16
+endif
 
 "use system clipboard --- at last
 set clipboard=unnamedplus
