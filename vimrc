@@ -65,8 +65,6 @@ filetype plugin indent on
 augroup vimrcEx
 au!
 
-" For all text files set 'textwidth' to 78 characters.
-autocmd FileType text setlocal textwidth=78
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -204,6 +202,9 @@ set formatoptions=qrnl
 set colorcolumn=79
 "hi ColorColumn guibg=#232728
 hi ColorColumn guibg=#F5F6CE 
+" For all text files set 'textwidth' to 78 characters.
+autocmd FileType text setlocal textwidth=78
+au FileType gitcommit set textwidth=72
 
 inoremap <F1> <ESC>
 nnoremap <F1> <ESC>
