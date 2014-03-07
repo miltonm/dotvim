@@ -60,11 +60,12 @@ if has("autocmd")
 " 'cindent' is on in C files, etc.
 " Also load indent files, to automatically do language-dependent indenting.
 filetype plugin indent on
+autocmd FileType text set autoindent
+au BufRead,BufNewFile *.md set filetype=markdown
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
 au!
-
 
 " When editing a file, always jump to the last known cursor position.
 " Don't do it when the position is invalid or when inside an event handler
@@ -73,13 +74,9 @@ autocmd BufReadPost *
 \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
-
   augroup END
-
 else
-
   set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
@@ -304,5 +301,7 @@ if has("unix")
                 \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
                 \ }
 endif
+
+
 
 
