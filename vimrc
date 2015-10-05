@@ -8,6 +8,90 @@
 "	      for Amiga:  s:.vimrc
 "  for MS-DOS and Win32:  $VIM\_vimrc
 "	    for OpenVMS:  sys$login:.vimrc
+call plug#begin('~/.vim/plugged')
+
+"set rtp+=~/.vim/bundle/Vundle.vim/
+"call vundle#rc()
+
+"So vundle will update itself
+Plug 'gmarik/Vundle.vim'
+
+Plug 'junegunn/seoul256.vim'
+
+Plug 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+" Using git URL
+Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+
+" Plugin options
+Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
+
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+
+Plug 'tpope/vim-sensible'
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'tpope/vim-surround'
+
+Plug 'tpope/vim-repeat'
+
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+" Goyo and Limelight options
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+""""""""""
+
+Plug 'plasticboy/vim-markdown'
+
+Plug 'reedes/vim-pencil'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'scrooloose/syntastic'
+
+""""""""""
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+"""""""""""
+
+Plug 'easymotion/vim-easymotion'
+
+Plug 'pangloss/vim-javascript'
+
+"{{{2 YouCompleteMe - Advanced code completion for C languages
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+    "let g:ycm_autoclose_previw_window_after_insertion = 1
+    "Special instructions: When YCM updates, it often needs a recompile
+    "By default, that is done by running ~/.vim/bundle/YouCompleteMe/install.sh
+
+Plug 'altercation/vim-colors-solarized'
+
+Plug '907th/vim-auto-save'
+let g:auto_save = 0
+let g:auto_save_in_insert_mode = 0
+
+call plug#end()
+
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
@@ -22,9 +106,9 @@ set nocompatible
 set backspace=indent,eol,start
 
 if has("vms")
-set nobackup		" do not keep a backup file, use versions instead
+    set nobackup		" do not keep a backup file, use versions instead
 else
-set backup		" keep a backup file
+    set backup		" keep a backup file
 endif
 set history=10000		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -40,8 +124,9 @@ map Q gq
 " In many terminal emulators the mouse works just fine, thus enable it.
 "set mouse=a
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
+" Switch syntax highlighting on, when the terminal has colors Also switch on
+" highlighting the last used search pattern.
+
 if &t_Co > 2 || has("gui_running")
 syntax on
 set hlsearch
@@ -51,6 +136,10 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -62,6 +151,7 @@ if has("autocmd")
 filetype plugin indent on
 autocmd FileType text set autoindent
 au BufRead,BufNewFile *.md set filetype=markdown
+
 
 " Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
@@ -132,8 +222,9 @@ autocmd BufRead *.py set efm=%C\ %.%#,%A\ \ File\ \"%f\"\\,\ line\ %l%.%#,%Z%[%^
 nnoremap <silent> <F10> :TagbarToggle<CR>
 let Tlist_Process_File_Always=1
 
-"create tab with f10
+"create tab with f11
 nnoremap <silent> <F11> :tabnew<CR>
+nnoremap <silent> <C-F11> :tabclose <CR>
 "browse tab with alt arrow
 map <silent><A-Right> :tabnext<CR>
 map <silent><A-Left> :tabprevious<CR>
@@ -175,12 +266,8 @@ runtime macros/matchit.vim
 set wildmenu
 
 set splitright
-"let mapleader=","
 "set relativenumber
 set undofile
-"nnoremap / /\v
-"vnoremap / /\v
-"set gdefault
 
 "http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 se ic
@@ -249,14 +336,13 @@ vnoremap . :normal .<CR>
 "setting font
 if has('gui')
     if has('unix')
-        set gfn=inconsolata\ 12
+        set gfn=inconsolata\ 11
     else
         "windows
         set gfn=Consolas:h10:cANSI
     endif
 endif
 
-call pathogen#infect()
 
 "set nowrapscan
 
@@ -276,7 +362,7 @@ nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 
 "Using solarized colorscheme
 " When without gui solarized works properly when t_Co set to 16
-set background=dark
+set background=light 
 colorscheme solarized
 if !has("gui_running")
     set t_Co=16
@@ -289,19 +375,20 @@ set clipboard=unnamedplus
 " CtrlP
 "------------------------------------------------------------
 " Set the max files
-let g:ctrlp_max_files = 0
+" let g:ctrlp_max_files = 0
  
 " from : https://gist.github.com/mitchellh/ee14d6ecb9196a07da56
 " Optimize file searching
-if has("unix")
-    let g:ctrlp_user_command = {
-                \   'types': {
-                \       1: ['.git/', 'cd %s && git ls-files']
-                \   },
-                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-                \ }
-endif
-
+" if has("unix")
+"     let g:ctrlp_user_command = {
+"                 \   'types': {
+"                 \       1: ['.git/', 'cd %s && git ls-files']
+"                 \   },
+"                 \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+"                \ }
+"endif
+"
+"
 
 
 
