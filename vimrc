@@ -59,7 +59,17 @@ Plug 'plasticboy/vim-markdown'
 
 Plug 'reedes/vim-pencil'
 
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType text         call pencil#init({'wrap': 'soft'})
+augroup END
+
 Plug 'airblade/vim-gitgutter'
+
+Plug 'scrooloose/nerdcommenter'
 
 Plug 'scrooloose/syntastic'
 
@@ -72,6 +82,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['jshint', 'jscs']
 """""""""""
 
 Plug 'easymotion/vim-easymotion'
@@ -89,6 +100,8 @@ Plug 'altercation/vim-colors-solarized'
 Plug '907th/vim-auto-save'
 let g:auto_save = 0
 let g:auto_save_in_insert_mode = 0
+
+Plug 'ryanss/vim-hackernews'
 
 call plug#end()
 
