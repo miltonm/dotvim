@@ -250,6 +250,7 @@ nnoremap <silent> <F12> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$']
 let NERDTreeWinSize=40
 let g:NERDTreeDirArrows=0
+let NERDTreeHijackNetrw=1
 
 
 "From http://items.sjbach.com/319/configuring-vim-right
